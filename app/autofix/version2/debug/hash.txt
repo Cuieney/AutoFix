@@ -1,0 +1,6 @@
+com/cuieney/autofix/a.class:9ddd88c4cf90d978d3bb98fe7cd69ff87a2d6d8f
+com/cuieney/autofix/MainActivity$1.class:08ddd6563817d32cd2f5dfc725b3747f3abeb4d1
+com/cuieney/autofix/MainActivity.class:0745ec0b563603449883ab44c5858bc43ca63a4c
+com/cuieney/autofix/b$a.class:331cc57489b11d3f3fcd31a26e0063c8b9f5bcbb
+com/cuieney/autofix/b$b.class:cd4e9be27df8c7c7aa6ac15204dd972da48bed10
+com/cuieney/autofix/b.class:ca3c528386a6e5a76e2513d8ae28ca7511444155

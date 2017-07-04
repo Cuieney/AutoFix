@@ -1,0 +1,45 @@
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
+task sourceJar(type: Jar) {
+    description = "An archive of the source code for Maven Central"
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task groovydocJar(type: Jar) {
+    description = "An archive of the GroovyDocs for Maven Central"
+    classifier = 'javadoc'
+    from groovydoc
+}
+bintray {
+    user = 'cuieney'
+    key = '7231a087723ba749ecdb07bcd5338bca75be0f1b'
+    publications = ['MyPublication']
+    dryRun = false //Whether to run this as dry-run, without deploying
+    publish = true //If version should be auto published after an upload
+    pkg {
+        repo = 'maven'
+        name = 'autofix'
+        desc = 'another hotfix framework'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/cuieney/AutoFix'
+        version {
+            name = '1.0.0'
+            desc = 'another hotfix framework'
+            released = new Date()
+            vcsTag = '1.0.0'
+            attributes = ['gradle-plugin': 'autofix']
+        }
+    }
+}
+//
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+            groupId 'com.cuieney'
+            artifactId 'autofix'
+            version '1.0.0'
+        }
+    }
+}

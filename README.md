@@ -73,6 +73,7 @@ auto_fix {
 
 
 ![Screen Shot 2017-07-05 at 8.20.17 PM.png](http://upload-images.jianshu.io/upload_images/3415839-1a5eb39c9d2f0ad8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 这个就是你的补丁对应的目录，patch.jar就是补丁包（version `2`）代表你生成补丁当前的版本号
 
 ### 补充

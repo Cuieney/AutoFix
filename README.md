@@ -1,5 +1,5 @@
 ## AutoFix 
->just support 热修复，既不支持ART 也不支持Runtime，而且必须是release（混淆状态）目前这个Library就当大家的学习Demo，代码集百家之所长而来。
+>既不支持ART 也不支持Runtime，而且必须是release（混淆状态）目前这个Library就当大家的学习Demo，代码集百家之所长而来，类似项目很多。
 
 ## 集成
 ### Get Gradle Plugin
@@ -94,6 +94,10 @@ if(your.country != china){
 }
 
 ```
+
+#### 问题
+有什么建议或者bug或者...（包括人生大事随时欢迎<img src="emoji/smile" width="18"/>） [issues](https://github.com/Cuieney/AutoFix/issues) or 
+Email <cuieney@163.com> 
 ### License
 FxxK License
 

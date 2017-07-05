@@ -40,15 +40,8 @@ import dalvik.system.DexFile;
 public final class AutoFix {
 
     static final String TAG = "AutoFix";
-
     private static final String CODE_CACHE_NAME = "code_cache";
-
     private static final String CODE_CACHE_SECONDARY_FOLDER_NAME = "auto-dexes";
-
-    private static final int VM_WITH_MULTIDEX_VERSION_MAJOR = 2;
-
-    private static final int VM_WITH_MULTIDEX_VERSION_MINOR = 1;
-
     private static final Set<String> installedApk = new HashSet<String>();
     private static final String DIR = "auto_opt";
     private static File mOptDir;

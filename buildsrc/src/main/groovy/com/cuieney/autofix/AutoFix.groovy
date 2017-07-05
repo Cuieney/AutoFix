@@ -118,11 +118,8 @@ class AutoFix implements Plugin<Project> {
                 //打桩等一些工作
                 def autoJarBeforeDex = "autoJarBeforeDex${variant.name.capitalize()}"
                 project.task(autoJarBeforeDex) << {
-                    //获取intermediates/class下的文件
+                    //获取build/intermediates/下的文件
                     Set<File> inputFiles = AutoUtils.getDexTaskInputFiles(project, variant, dexTask)
-                    inputFiles.each { inputFile ->
-
-                    }
                     inputFiles.each { inputFile ->
                         def path = inputFile.absolutePath
                         if (path.endsWith(SdkConstants.DOT_JAR)) {
@@ -150,6 +147,7 @@ class AutoFix implements Plugin<Project> {
                                                 }
                                                 def hash = DigestUtils.shaHex(bytes)
                                                 hashFile.append(AutoUtils.format(classPath, hash))
+                                                //根据hash值来判断当前文件是否为差异文件需要做成patch吗？
                                                 if (AutoUtils.notSame(hashMap,classPath, hash)) {
                                                     def file = new File("${patchDir}${File.separator}${classPath}")
                                                     file.getParentFile().mkdirs()
@@ -198,6 +196,7 @@ class AutoFix implements Plugin<Project> {
             return hashMap;
         }
     }
+
 
 
 }

@@ -166,17 +166,15 @@ public class AutoUtils {
 
             dexTask.inputs.files.files.each {
                 if (it.exists()) {
-                    println("fileadd-1 "+it.absolutePath)
                     if (it.isDirectory()) {
-                        println("fileadd0 "+it.absolutePath)
                         Collection<File> jars = FileUtils.listFiles(it, extensions, true);
                         files.addAll(jars)
+                        //intermediates/class下面对应的class文件
                         if (it.absolutePath.toLowerCase().endsWith("intermediates${File.separator}classes${File.separator}${variant.dirName}".toLowerCase())) {
-                            println("fileadd2 "+it.absolutePath)
                             files.add(it)
                         }
+                        //jar包
                     } else if (it.name.endsWith(SdkConstants.DOT_JAR)) {
-                        println("fileadd1 "+it.absolutePath)
                         files.add(it)
                     }
                 }

@@ -27,7 +27,7 @@ class NuwaProcessor {
             def file = new JarFile(jarFile);
             Enumeration enumeration = file.entries();
             JarOutputStream jarOutputStream = new JarOutputStream(new FileOutputStream(optJar));
-
+            //遍历jar文件中的class 把需要的文件进行打桩
             while (enumeration.hasMoreElements()) {
                 JarEntry jarEntry = (JarEntry) enumeration.nextElement();
                 String entryName = jarEntry.getName();
@@ -35,13 +35,14 @@ class NuwaProcessor {
 
                 InputStream inputStream = file.getInputStream(jarEntry);
                 jarOutputStream.putNextEntry(zipEntry);
-
+                //打桩操作
                 if (shouldProcessClassInJar(entryName, includePackage, excludeClass)) {
                     def bytes = referHackWhenInit(inputStream);
 
                     jarOutputStream.write(bytes);
                     def hash = DigestUtils.shaHex(bytes)
                     hashFile.append(AutoUtils.format(entryName, hash))
+                    //根据hash值来判断当前文件是否为差异文件需要做成patch吗？
                     if (AutoUtils.notSame(map,entryName, hash)) {
                         def entryFile = new File("${patchDir}${File.separator}${entryName}")
                         entryFile.getParentFile().mkdirs()

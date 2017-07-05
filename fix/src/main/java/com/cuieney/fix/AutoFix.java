@@ -93,10 +93,6 @@ public final class AutoFix {
      * @param dexPath
      */
     public static void applyPatch(Context context, String dexPath) {
-//        if (IS_VM_CAPABLE) {
-//            //art虚拟机走另外一套fix
-//            return;
-//        }
 
         try {
             ApplicationInfo applicationInfo = getApplicationInfo(context);
@@ -443,4 +439,7 @@ public final class AutoFix {
             out.write(buffer, 0, read);
         }
     }
+
+
+
 }

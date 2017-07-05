@@ -1,45 +1,169 @@
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
-task sourceJar(type: Jar) {
-    description = "An archive of the source code for Maven Central"
+apply plugin: 'groovy'
+apply plugin: 'maven'
+//def siteUrl = 'https://github.com/Cuieney/AutoFix'   // 项目的主页
+//def gitUrl = 'https://github.com/Cuieney/AutoFix.git'   // Git仓库的url
+//
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from 'build/docs/javadoc'
+//}
+//
+//task sourcesJar(type: Jar) {
+//    from sourceSets.main.allSource
+//    classifier = 'sources'
+//}
+//
+//artifacts {
+//    archives jar
+//    archives javadocJar
+//    archives sourcesJar
+//}
+////signing {
+////    sign configurations.archives
+////}
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            pom.project {
+//                name 'gradle-retrolambda'
+//                packaging 'jar'
+//                description 'another hotfix framework'
+//                url 'https://github.com/Cuieney/AutoFix'
+//
+//                scm {
+//                    url 'https://github.com/Cuieney/AutoFix.git'
+//                    connection 'https://github.com/Cuieney/AutoFix.git'
+//                    developerConnection 'https://github.com/Cuieney/AutoFix'
+//                }
+//
+//                licenses {
+//                    license {
+//                        name 'The Apache Software License, Version 2.0'
+//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                        distribution 'repo'
+//                    }
+//                }
+//
+//                developers {
+//                    developer {
+//                        id 'cuieney'        //填写的一些基本信息
+//                        name 'cuieney'
+//                        email 'cuieney@163.com'
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
+//
+//Properties properties = new Properties()
+////读取properties的配置信息，当然直接把信息写到代码里也是可以的
+//properties.load(new File('/Users/cuieneydemacbook/Desktop/Demo/AutoFix/local.properties').newDataInputStream())
+//bintray {
+//    user = properties.getProperty("bintray.user")
+//    key = properties.getProperty("bintray.apikey")
+//    publications = ['MyPublication']
+//    dryRun = false //Whether to run this as dry-run, without deploying
+//    publish = true //If version should be auto published after an upload
+//    pkg {
+//        userOrg="cui131425"
+//        repo = 'mave'
+//        name = 'AutoFixPlugin'
+//        desc = 'another hotfix framework'
+//        websiteUrl = siteUrl
+//        vcsUrl = gitUrl
+//        licenses = ["Apache-2.0"]
+//        publish = true
+//        version {
+//            name = '1.1.4'
+//            desc = 'another hotfix framework'
+//            released = new Date()
+//            vcsTag = '1.1.4'
+//            attributes = ['gradle-plugin': 'autofix']
+//        }
+//    }
+//}
+//
+//
+////
+//publishing {
+//    publications {
+//        MyPublication(MavenPublication) {
+//            from components.java
+//            groupId 'com.cuieney'
+//            artifactId 'autofix'
+//            version '1.1.4'
+//        }
+//    }
+//}
+//plugins {
+//    id "com.jfrog.bintray" version "1.4"
+//}
+
+//apply plugin: 'groovy'
+
+def versionName = "1.1.7"
+group "com.cuieney.autofix"
+version versionName
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile gradleApi()
+    compile "commons-io:commons-io:1.4"
+    compile 'commons-codec:commons-codec:1.6'
+}
+
+apply plugin: 'maven-publish'
+
+// custom tasks for creating source/javadoc jars
+task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
     from sourceSets.main.allSource
 }
 
-task groovydocJar(type: Jar) {
-    description = "An archive of the GroovyDocs for Maven Central"
+task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
-    from groovydoc
+    from javadoc.destinationDir
 }
+
+// add javadoc/source jar tasks as artifacts
+artifacts {
+    archives sourcesJar, javadocJar
+}
+Properties properties = new Properties()
+//读取properties的配置信息，当然直接把信息写到代码里也是可以的
+properties.load(new File('/Users/cuieneydemacbook/Desktop/Demo/AutoFix/local.properties').newDataInputStream())
 bintray {
-    user = 'cuieney'
-    key = '7231a087723ba749ecdb07bcd5338bca75be0f1b'
-    publications = ['MyPublication']
-    dryRun = false //Whether to run this as dry-run, without deploying
-    publish = true //If version should be auto published after an upload
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    publications = ['mavenJava']
     pkg {
-        repo = 'maven'
-        name = 'autofix'
-        desc = 'another hotfix framework'
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/cuieney/AutoFix'
-        version {
-            name = '1.0.0'
-            desc = 'another hotfix framework'
-            released = new Date()
-            vcsTag = '1.0.0'
-            attributes = ['gradle-plugin': 'autofix']
-        }
+        userOrg="cui131425"
+        repo = 'mave'
+        name = 'AutoFixPlugin'
+        desc = 'a gradle plugin for autofix to inject some code into classes'
+        websiteUrl = 'https://github.com/Cuieney/AutoFix'
+        issueTrackerUrl = 'https://github.com/Cuieney/AutoFix/issues'
+        vcsUrl = 'https://github.com/Cuieney/AutoFix'
+        publicDownloadNumbers = true
+        licenses = ['MIT']
     }
 }
-//
+
 publishing {
     publications {
-        MyPublication(MavenPublication) {
+        mavenJava(MavenPublication) {
             from components.java
-            groupId 'com.cuieney'
-            artifactId 'autofix'
-            version '1.0.0'
+            artifact sourcesJar
+            artifact javadocJar
+            groupId 'com.cuieney.autofix'
+            artifactId 'gradle'
+            version versionName
         }
     }
 }

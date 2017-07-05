@@ -1,6 +1,13 @@
 ## AutoFix 
 >既不支持ART 也不支持Runtime，而且必须是release（混淆状态）目前这个Library就当大家的学习Demo，代码集百家之所长而来，类似项目很多。
 
+### 原理
+这两篇文章就够了
+
+[DexClassLoader热修复的入门到放弃](https://juejin.im/post/5951d5265188250d8f602225)
+
+[手把手教你写热修复（HOTFIX）](https://juejin.im/post/595d02d5f265da6c375a90bf)
+
 ## 集成
 ### Get Gradle Plugin
 1. 根据以下操作把代码填到你项目根目录的gradle中

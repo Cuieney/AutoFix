@@ -1,6 +1,4 @@
 ## AutoFix 
->既不支持ART 也不支持Runtime，而且必须是release（混淆状态）目前这个Library就当大家的学习Demo，代码集百家之所长而来，类似项目很多。
-
 ### 原理
 这两篇文章就够了
 

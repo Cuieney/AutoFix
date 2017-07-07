@@ -1,4 +1,6 @@
 ## AutoFix 
+>目前项目支持静态修复功能需要重启，集成简单，使用方便。
+
 ### 原理
 这两篇文章就够了
 
@@ -81,6 +83,11 @@ auto_fix {
 
 这个就是你的补丁对应的目录，patch.jar就是补丁包（version `2`）代表你生成补丁当前的版本号
 
+### TODO
+- 增强兼容性
+- 支持runtime
+- 增加插件化跳转Act
+
 ### 补充
 你会看到AutoFix SDK里面有这样一个类DynamicApk，这是一个beta版。用于插件化的工具。目前focus获取apk的资源文件，目前接口如下：
 - getStringFromApk
@@ -93,15 +100,9 @@ auto_fix {
 
 参数都一样(Context context, String apkPath, String name)，只介绍最后一个参数such as（R.drawable.thumb）这个name就是thumb
 
-```
-if(your.country != china){
-    println("not support")
-}
-
-```
 
 #### 问题
-有什么建议或者bug或者...（包括人生大事随时欢迎<img src="emoji/smile" width="18"/>） [issues](https://github.com/Cuieney/AutoFix/issues) or 
+有什么建议或者bug或者...（包括人生大事随时欢迎） [issues](https://github.com/Cuieney/AutoFix/issues) or 
 Email <cuieney@163.com> 
 ### License
 FxxK License

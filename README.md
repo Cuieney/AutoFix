@@ -102,7 +102,7 @@ auto_fix {
 
 
 #### 问题
-有什么建议或者bug或者...（包括人生大事随时欢迎） [issues](https://github.com/Cuieney/AutoFix/issues) or 
+发现bug或好的建议欢迎 [issues](https://github.com/Cuieney/AutoFix/issues) or 
 Email <cuieney@163.com> 
 ### License
 FxxK License

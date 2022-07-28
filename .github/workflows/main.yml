@@ -1,7 +1,7 @@
 name: dialy on build
 on:
   schedule:
-    - cron: '0 */1 * * * *'
+    - cron: '*/1  * * * *'
     # UTC时间，分别对应了北京时间的8点、13点、19点的整点和30分
 
 jobs:

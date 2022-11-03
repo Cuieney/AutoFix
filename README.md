@@ -105,5 +105,5 @@ auto_fix {
 发现bug或好的建议欢迎 [issues](https://github.com/Cuieney/AutoFix/issues) or 
 Email <cuieney@163.com> 
 ### License
-FxxK License
+F**K License
 
